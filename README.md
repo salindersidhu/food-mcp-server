@@ -31,22 +31,15 @@ git clone git@github.com:salindersidhu/food-mcp-server.git
 cd food-mcp-server
 ```
 
-2. (Recommended) Create and activate a virtual environment:
+2. (Recommended) Use uv for environment and dependency management:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install uv  # Only needed once, if you don't have uv already
+uv venv         # Creates a .venv and installs dependencies
+uv pip install -e .  # Installs your package in editable mode
 ```
 
-3. Install dependencies:
-
-
-```bash
-pip install -U pip
-pip install -e .
-```
-
-4. (Optional) Add to Claude Desktop as a tool:
+3. (Optional) Add to Claude Desktop as a tool:
 
    - Run the following command to register this server as a tool in Claude Desktop:
 
