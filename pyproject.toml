@@ -1,0 +1,9 @@
+[project]
+name = "food-mcp-server"
+version = "1.0.0"
+description = "A FastAPI-based MCP server that exposes endpoints for searching meals, fetching meal details, categories, and regional dishes using TheMealDB API."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.10.1",
+]
