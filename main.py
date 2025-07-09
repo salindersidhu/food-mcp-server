@@ -9,7 +9,7 @@ MEALDB_BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
 
 
 @mcp.tool(title="Meal Ingredients Fetcher")
-async def fetch_meal_ingredients(name: str) -> dict:
+async def fetch_meal_ingredients_by_name(name: str) -> dict:
     """
     Fetch meals by their name.
 
@@ -61,7 +61,7 @@ async def fetch_meal_ingredients(name: str) -> dict:
         return {"meals": filtered_meals}
 
 @mcp.tool(title="Meal Instructions Fetcher")
-async def fetch_meal_instructions(name: str):
+async def fetch_meal_instructions_by_id(id: str):
     """
     Fetch meal instructions and ingredients by meal ID.
 
@@ -95,7 +95,7 @@ async def fetch_meal_instructions(name: str):
         }
     """
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"{MEALDB_BASE_URL}lookup.php?i={name}")
+        response = await client.get(f"{MEALDB_BASE_URL}lookup.php?i={id}")
         data = response.json()
 
         if data.get("meals") is None:
@@ -145,6 +145,34 @@ async def fetch_meal_categories() -> dict:
     """
     async with httpx.AsyncClient() as client:
         response = await client.get(f"{MEALDB_BASE_URL}categories.php")
+        return response.json()
+
+
+@mcp.tool(title="Meal Fetcher by Location")
+async def fetch_meal_by_location(location: str) -> dict:
+    """
+    Fetch meals by location.
+
+    Returns:
+        dict: A dictionary with a single key "meals", which is a list of meal objects.
+        Each meal object contains:
+            - strMeal (str): The name of the meal.
+            - strMealThumb (str): URL to the meal thumbnail image.
+            - idMeal (str): The ID of the meal. 
+        Example:
+        {
+            "meals": [
+                {
+                    "strMeal": "BeaverTails",
+                    "strMealThumb": "https://www.themealdb.com/images/media/meals/ryppsv1511815505.jpg",
+                    "idMeal": "52928"
+                },
+                ...
+            ]
+        }
+    """
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f"{MEALDB_BASE_URL}filter.php?a={location}")
         return response.json()
 
 
