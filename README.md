@@ -1,4 +1,3 @@
-
 # Food MCP Server
 
 [![Contributors](https://img.shields.io/github/contributors/salindersidhu/food-mcp-server?style=for-the-badge)](https://github.com/salindersidhu/food-mcp-server/graphs/contributors)
@@ -6,7 +5,7 @@
 
 ## Overview
 
-A FastAPI-based MCP server that exposes endpoints for searching meals, fetching meal details, categories, and regional dishes using TheMealDB API. Built using Python and other open source technologies.
+A FastAPI-based MCP server that exposes endpoints for searching meals, fetching meal details, categories, regional dishes and nutritional information. It combines recipe data from TheMealDB with comprehensive nutritional information from the USDA Food Data Central database, allowing you to explore dishes while understanding their nutritional content. Built using Python and other open source technologies.
 
 <p float="left">
     <img src="https://hub.docker.com/api/media/repos_logo/v1/library%2Fpython?type=logo" height="150" width="150">
@@ -17,10 +16,10 @@ A FastAPI-based MCP server that exposes endpoints for searching meals, fetching 
 
 ## Prerequisite Software
 
-| Software | Version  |
-| :------- | :------- |
-| Git      | 2.20.1+  |
-| Python   | 3.11+    |
+| Software | Version |
+| :------- | :------ |
+| Git      | 2.20.1+ |
+| Python   | 3.11+   |
 
 ## Getting Started
 
@@ -39,7 +38,16 @@ uv venv         # Creates a .venv and installs dependencies
 uv pip install -e .  # Installs your package in editable mode
 ```
 
-3. (Optional) Add to Claude Desktop as a tool:
+3. Set up your environment variables:
+
+   - Sign up for a free USDA Food Data Central API key at [https://fdc.nal.usda.gov/api-key-signup.html](https://fdc.nal.usda.gov/api-key-signup.html)
+   - Copy the example environment file:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit the `.env` file and replace `your_api_key_here` with your actual USDA API key
+
+4. (Optional) Add to Claude Desktop as a tool:
 
    - Run the following command to register this server as a tool in Claude Desktop:
 
@@ -72,4 +80,3 @@ mcp run main.py
 ## License
 
 This project is licensed under the Apache License 2.0.
-
